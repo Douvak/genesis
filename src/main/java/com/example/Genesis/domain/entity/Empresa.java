@@ -23,6 +23,10 @@ public class Empresa {
     private String telefone;
     private String email;
     private String endereco;
+    @OneToOne(mappedBy = "empresa")
+    private Usuario usuario;
+    @OneToOne(mappedBy = "empresa")
+    private Funcionario funcionario;
 
     public Empresa(criarEmpresaDTO dados) {
         nome = dados.nome();
