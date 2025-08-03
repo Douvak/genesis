@@ -6,7 +6,7 @@ import lombok.*;
 import java.time.LocalDateTime;
 
 @Entity(name = "Funcionario")
-@Table(name = "funcionario")
+@Table(name = "funcionarios")
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
@@ -19,7 +19,7 @@ public class Funcionario {
     private String nome;
     private String cargo;
     private String email;
-    private LocalDateTime data_adimissao;
+    private LocalDateTime data_admissao;
     @OneToOne
     @JoinColumn(name = "empresa_id", referencedColumnName = "id", nullable = false)
     private Empresa empresa;
