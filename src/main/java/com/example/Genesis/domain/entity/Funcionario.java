@@ -1,5 +1,6 @@
 package com.example.Genesis.domain.entity;
 
+import com.example.Genesis.domain.dto.FuncionarioDTO;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -20,9 +21,16 @@ public class Funcionario {
     private String cargo;
     private String email;
     private LocalDateTime data_admissao;
-    @OneToOne
+    @ManyToOne
     @JoinColumn(name = "empresa_id", referencedColumnName = "id", nullable = false)
     private Empresa empresa;
     @OneToOne(mappedBy = "funcionario")
     private Usuario usuario;
+
+    public Funcionario(FuncionarioDTO dados, Empresa empresa) {
+        this.nome = dados.nome();
+        this.cargo = dados.cargo();
+        this.email = dados.email();
+        this.empresa = empresa;
+    }
 }

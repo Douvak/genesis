@@ -2,10 +2,10 @@ package com.example.Genesis.domain.dto;
 
 import jakarta.validation.constraints.NotNull;
 
-public record DadosAutenticacao(
+public record LoginDTO(
         @NotNull
-        String Login,
+        String login,
         @NotNull
-        String Senha
+        String senha
 ) {
 }

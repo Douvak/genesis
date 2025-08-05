@@ -1,7 +1,7 @@
 package com.example.Genesis.domain.service;
 
 import com.example.Genesis.domain.dto.EmpresaDTO;
-import com.example.Genesis.domain.dto.criarEmpresaDTO;
+import com.example.Genesis.domain.dto.CriarEmpresaDTO;
 import com.example.Genesis.domain.entity.Empresa;
 import com.example.Genesis.domain.repository.EmpresaRepository;
 import lombok.AllArgsConstructor;
@@ -16,7 +16,7 @@ public class EmpresaService {
     private final EmpresaRepository empresaRepository;
 
 
-    public String criarEmpresa(criarEmpresaDTO dados) {
+    public String criarEmpresa(CriarEmpresaDTO dados) {
         Empresa verificarEmpresa = empresaRepository.findByCnpj(dados.cnpj());
         if (verificarEmpresa != null){
             throw new RuntimeException("Já existe uma empresa nesse cnpj!");

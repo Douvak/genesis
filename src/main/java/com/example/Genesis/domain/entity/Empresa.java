@@ -1,12 +1,14 @@
 package com.example.Genesis.domain.entity;
 
 
-import com.example.Genesis.domain.dto.criarEmpresaDTO;
+import com.example.Genesis.domain.dto.CriarEmpresaDTO;
 import jakarta.persistence.*;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+
+import java.util.List;
 
 @Entity(name = "Empresa")
 @Table(name = "empresa")
@@ -23,12 +25,12 @@ public class Empresa {
     private String telefone;
     private String email;
     private String endereco;
-    @OneToOne(mappedBy = "empresa")
-    private Usuario usuario;
-    @OneToOne(mappedBy = "empresa")
-    private Funcionario funcionario;
+    @OneToMany(mappedBy = "empresa")
+    private List<Usuario> usuario;
+    @OneToMany(mappedBy = "empresa")
+    private List<Funcionario> funcionario;
 
-    public Empresa(criarEmpresaDTO dados) {
+    public Empresa(CriarEmpresaDTO dados) {
         nome = dados.nome();
         cnpj = dados.cnpj();
         email = dados.email();

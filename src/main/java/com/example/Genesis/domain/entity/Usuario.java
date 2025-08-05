@@ -24,9 +24,10 @@ public class Usuario implements UserDetails {
     private Long id;
     private String username;
     private String senha;
-    @OneToOne
+    @ManyToOne
     @JoinColumn(name = "empresa_id", referencedColumnName = "id", nullable = true)
     private Empresa empresa;
+    @Enumerated(EnumType.STRING)
     private TipoDeConta papel;
     private Boolean ativo;
     @OneToOne

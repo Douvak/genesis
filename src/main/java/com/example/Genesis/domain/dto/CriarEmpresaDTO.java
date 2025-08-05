@@ -3,7 +3,7 @@ package com.example.Genesis.domain.dto;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 
-public record criarEmpresaDTO(
+public record CriarEmpresaDTO(
         @NotNull
         String nome,
         @NotNull

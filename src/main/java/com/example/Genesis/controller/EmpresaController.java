@@ -1,11 +1,10 @@
 package com.example.Genesis.controller;
 
 import com.example.Genesis.domain.dto.EmpresaDTO;
-import com.example.Genesis.domain.dto.criarEmpresaDTO;
+import com.example.Genesis.domain.dto.CriarEmpresaDTO;
 import com.example.Genesis.domain.service.EmpresaService;
 import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -22,7 +21,7 @@ public class EmpresaController {
 
     @PostMapping
     @Transactional
-    public ResponseEntity criar(@RequestBody criarEmpresaDTO dados){
+    public ResponseEntity criar(@RequestBody CriarEmpresaDTO dados){
         eventoService.criarEmpresa(dados);
         return ResponseEntity.ok().build();
     }

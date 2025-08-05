@@ -39,6 +39,7 @@ public class UsuarioService {
         var senhaHASH = passwordEncoder.encode(dados.senha());
 
         Usuario novoUsuario = new Usuario(dados, empresa , funcionario, senhaHASH);
+        usuarioRepositiry.save(novoUsuario);
         return novoUsuario;
 
     }
