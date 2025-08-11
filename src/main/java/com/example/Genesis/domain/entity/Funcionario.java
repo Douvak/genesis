@@ -21,6 +21,8 @@ public class Funcionario {
     private String cargo;
     private String email;
     private LocalDateTime data_admissao;
+
+
     @ManyToOne
     @JoinColumn(name = "empresa_id", referencedColumnName = "id", nullable = false)
     private Empresa empresa;
@@ -32,5 +34,6 @@ public class Funcionario {
         this.cargo = dados.cargo();
         this.email = dados.email();
         this.empresa = empresa;
+        this.data_admissao = LocalDateTime.now();
     }
 }

@@ -1,0 +1,2 @@
+ALTER TABLE tipos_pagamento
+MODIFY status_pagamento BOOLEAN;

@@ -1,3 +1,4 @@
+
 -- Remover FK e coluna de usuario_id da tabela funcionarios
 ALTER TABLE funcionarios
 DROP FOREIGN KEY funcionarios_ibfk_2; -- Nome da FK pode variar, veja observação abaixo

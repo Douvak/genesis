@@ -24,12 +24,14 @@ public class Usuario implements UserDetails {
     private Long id;
     private String username;
     private String senha;
-    @ManyToOne
-    @JoinColumn(name = "empresa_id", referencedColumnName = "id", nullable = true)
-    private Empresa empresa;
     @Enumerated(EnumType.STRING)
     private TipoDeConta papel;
     private Boolean ativo;
+
+
+    @ManyToOne
+    @JoinColumn(name = "empresa_id", referencedColumnName = "id", nullable = true)
+    private Empresa empresa;
     @OneToOne
     @JoinColumn(name = "funcionario_id",referencedColumnName = "id", nullable = true)
     private Funcionario funcionario;

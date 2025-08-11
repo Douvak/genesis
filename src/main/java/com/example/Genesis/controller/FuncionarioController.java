@@ -25,10 +25,10 @@ public class FuncionarioController {
         return ResponseEntity.ok(funcionario);
     }
 
-        @GetMapping("/{empresaID}")
-        public ResponseEntity<List<ListaFuncionariosDTO>> listarFuncionario(@PathVariable Long empresaID){
-            var listarFuncionarios = service.listarFuncionarios(empresaID);
-            return ResponseEntity.ok(listarFuncionarios);
+    @GetMapping("/{empresaID}")
+    public ResponseEntity<List<ListaFuncionariosDTO>> listarFuncionario(@PathVariable Long empresaID){
+        var listarFuncionarios = service.listarFuncionarios(empresaID);
+        return ResponseEntity.ok(listarFuncionarios);
     }
 
     @DeleteMapping("{id}")

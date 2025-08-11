@@ -25,10 +25,20 @@ public class Empresa {
     private String telefone;
     private String email;
     private String endereco;
+
+
     @OneToMany(mappedBy = "empresa")
-    private List<Usuario> usuario;
+    private List<Usuario> usuarios;
     @OneToMany(mappedBy = "empresa")
-    private List<Funcionario> funcionario;
+    private List<Funcionario> funcionarios;
+    @OneToMany(mappedBy = "empresa")
+    private List<Cliente> clientes;
+    @OneToMany(mappedBy = "empresa")
+    private List<Pedido> pedidos;
+    @OneToMany(mappedBy = "empresa")
+    private List<TipoPagamento> tiposPagamentos;
+    @OneToMany(mappedBy = "empresa")
+    private List<OrdemDeServico> ordemDeServicos;
 
     public Empresa(CriarEmpresaDTO dados) {
         nome = dados.nome();
