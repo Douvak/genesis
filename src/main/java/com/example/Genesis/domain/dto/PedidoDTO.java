@@ -8,7 +8,6 @@ import java.util.List;
 
 public record PedidoDTO(
         Long id,
-        Long empresaID,
         String cliente,
         Float valorTotal,
         LocalDateTime previsaoDeEntrega,
@@ -17,7 +16,6 @@ public record PedidoDTO(
 ) {
     public PedidoDTO(Pedido pedido) {
     this(pedido.getId(),
-            pedido.getEmpresa().getId(),
             pedido.getCliente() != null ? pedido.getCliente().getNome() : null,pedido.getValorTotal(),
             pedido.getPrevisaoDeEntrega(),
             pedido.getTiposPagamentos().stream().map(TipoPagamentoDTO::new).toList(),

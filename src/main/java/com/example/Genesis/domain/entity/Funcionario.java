@@ -5,6 +5,7 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Entity(name = "Funcionario")
 @Table(name = "funcionarios")
@@ -28,6 +29,8 @@ public class Funcionario {
     private Empresa empresa;
     @OneToOne(mappedBy = "funcionario")
     private Usuario usuario;
+    @OneToMany(mappedBy = "funcionario")
+    private List<Etapas> etapas;
 
     public Funcionario(FuncionarioDTO dados, Empresa empresa) {
         this.nome = dados.nome();

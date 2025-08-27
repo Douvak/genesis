@@ -21,9 +21,17 @@ public class OrdenDeServicoController {
         return ResponseEntity.ok(ordem);
     }
 
+    @Transactional
     @PutMapping("editarOrdem")
     public ResponseEntity<OrdemDeServicoDTO>editarOrdem(@RequestBody OrdemDeServicoDTO dados){
         OrdemDeServicoDTO ordemATT = service.atualizarOrdem(dados);
         return ResponseEntity.ok(ordemATT);
+    }
+
+    @Transactional
+    @DeleteMapping("id")
+   public ResponseEntity<String>deletarORdem(@PathVariable Long id) {
+        service.deletarOrdem(id);
+        return ResponseEntity.ok("Ordem deletada");
     }
 }

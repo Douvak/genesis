@@ -32,6 +32,8 @@ public class OrdemDeServico {
 
     @OneToMany(mappedBy = "ordemDeServico")
     private List<Arquivo> arquivos;
+    @OneToMany(mappedBy = "ordemDeServico")
+    private List<Etapas> etapas;
 
 
     public OrdemDeServico(OrdemDeServicoDTO dados, Pedido pedido, Empresa empresa) {

@@ -38,4 +38,10 @@ public class OrdemDeServicoService {
         repository.save(ordem);
         return new OrdemDeServicoDTO(ordem);
     }
+
+    public void deletarOrdem(Long id) {
+
+        OrdemDeServico ordem = repository.getReferenceById(id);
+        repository.delete(ordem);
+    }
 }

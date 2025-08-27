@@ -39,6 +39,8 @@ public class Empresa {
     private List<TipoPagamento> tiposPagamentos;
     @OneToMany(mappedBy = "empresa")
     private List<OrdemDeServico> ordemDeServicos;
+    @OneToMany(mappedBy = "empresa")
+    private List<Etapas> etapas;
 
     public Empresa(CriarEmpresaDTO dados) {
         nome = dados.nome();

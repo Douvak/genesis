@@ -10,6 +10,7 @@ import com.example.Genesis.domain.repository.ClienteRepoistory;
 import com.example.Genesis.domain.repository.PedidoRepository;
 import com.example.Genesis.domain.service.components.Validacao;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -37,7 +38,7 @@ public class PedidoService {
     public List<PedidoDTO> listaDePedidos(Long empresaID) {
         Empresa empresa = validacao.validarEmpresa(empresaID);
 
-        List<PedidoDTO> lista = repository.findByEmpresaId(empresa.getId()).stream().map(PedidoDTO::new).toList();
+        List<PedidoDTO> lista = repository.findByEmpresaId(empresa.getId(), Sort.by(Sort.Direction.ASC, "previsaoDeEntrega")).stream().map(PedidoDTO::new).toList();
         return lista;
     }
 
