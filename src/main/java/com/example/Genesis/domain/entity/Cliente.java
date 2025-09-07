@@ -1,6 +1,6 @@
 package com.example.Genesis.domain.entity;
 
-import com.example.Genesis.domain.dto.ClienteDTO;
+import com.example.Genesis.domain.dto.NovoClienteDTO;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -26,9 +26,11 @@ public class Cliente {
     @OneToMany(mappedBy = "cliente")
     private List<Pedido> pedidos;
 
-    public Cliente(ClienteDTO dados, Empresa empresa) {
+    public Cliente(NovoClienteDTO dados, Empresa empresa) {
         this.contato = dados.contato();
         this.nome = dados.nome();
         this.empresa = empresa;
     }
+
+
 }

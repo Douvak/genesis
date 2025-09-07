@@ -5,12 +5,11 @@ import com.example.Genesis.domain.entity.OrdemDeServico;
 public record OrdemDeServicoDTO(
         Long id,
         String descricao,
-        Float valor,
-        Long empresaID,
-        Long pedidoID
+        Float valor
+
 ) {
 
     public OrdemDeServicoDTO(OrdemDeServico ordem){
-        this(ordem.getId(), ordem.getDescricao(), ordem.getValor(),ordem.getEmpresa().getId(),ordem.getPedido().getId());
+        this(ordem.getId(), ordem.getDescricao(), ordem.getValor());
     }
 }

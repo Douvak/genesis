@@ -1,6 +1,6 @@
 package com.example.Genesis.domain.service;
 
-import com.example.Genesis.domain.dto.ClienteDTO;
+import com.example.Genesis.domain.dto.NovoClienteDTO;
 import com.example.Genesis.domain.dto.ListaClientesDTO;
 import com.example.Genesis.domain.entity.Cliente;
 import com.example.Genesis.domain.entity.Empresa;
@@ -18,12 +18,12 @@ public class ClienteService {
     @Autowired
     private Validacao validacao;
 
-    public ClienteDTO criarCliente(ClienteDTO dados) {
+    public NovoClienteDTO criarCliente(NovoClienteDTO dados) {
         Empresa empresa = validacao.validarEmpresa(dados.empresaID());
 
         Cliente novoCliente = new Cliente(dados,empresa);
         repoistory.save(novoCliente);
-        return new ClienteDTO(novoCliente);
+        return new NovoClienteDTO(novoCliente);
     }
 
     public List<ListaClientesDTO> listaDeClientes(Long empresaID) {
@@ -33,7 +33,7 @@ public class ClienteService {
         return listaDeClientes;
     }
 
-    public ClienteDTO atualizarCliente(Long id, ClienteDTO dados) {
+    public NovoClienteDTO atualizarCliente(Long id, NovoClienteDTO dados) {
         Cliente cliente = repoistory.getReferenceById(id);
         if (dados.nome() != null){
             cliente.setNome(dados.nome());
@@ -42,7 +42,7 @@ public class ClienteService {
             cliente.setContato(dados.contato());
         }
         repoistory.save(cliente);
-        return new ClienteDTO(cliente);
+        return new NovoClienteDTO(cliente);
     }
 
     public void deletarCliente(Long id) {
@@ -50,10 +50,10 @@ public class ClienteService {
         repoistory.delete(cliente);
     }
 
-    public ClienteDTO dadosCliente(Long id) {
+    public NovoClienteDTO dadosCliente(Long id) {
 
         Cliente cliente = repoistory.getReferenceById(id);
 
-        return new ClienteDTO(cliente);
+        return new NovoClienteDTO(cliente);
     }
 }

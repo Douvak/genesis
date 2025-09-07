@@ -1,6 +1,7 @@
 package com.example.Genesis.controller;
 
-import com.example.Genesis.domain.dto.EmpresaDTO;
+import com.example.Genesis.domain.dto.EmpresaDadosDTO;
+import com.example.Genesis.domain.dto.NovaEmpresaDTO;
 import com.example.Genesis.domain.dto.CriarEmpresaDTO;
 import com.example.Genesis.domain.service.EmpresaService;
 import jakarta.transaction.Transactional;
@@ -17,25 +18,31 @@ import org.springframework.web.bind.annotation.*;
 public class EmpresaController {
 
     @Autowired
-    private final EmpresaService eventoService;
+    private final EmpresaService empresaService;
 
     @PostMapping
     @Transactional
     public ResponseEntity criar(@RequestBody CriarEmpresaDTO dados){
-        eventoService.criarEmpresa(dados);
+        empresaService.criarEmpresa(dados);
         return ResponseEntity.ok().build();
     }
 
     @GetMapping
-    public ResponseEntity<Page<EmpresaDTO>> listar(Pageable pageable){
-        var page = eventoService.listarEmpresas(pageable);
+    public ResponseEntity<Page<NovaEmpresaDTO>> listar(Pageable pageable){
+        var page = empresaService.listarEmpresas(pageable);
         return ResponseEntity.ok(page);
     }
 
     @DeleteMapping("{id}")
     @Transactional
     public ResponseEntity deletar(@PathVariable Long id){
-        eventoService.deletarEmpresa(id);
+        empresaService.deletarEmpresa(id);
         return ResponseEntity.ok("Empresa Deletada com sucesso!");
     }
+    @GetMapping("{id}")
+    public ResponseEntity<EmpresaDadosDTO>dadosEmpresa(@PathVariable Long id){
+        var dadosEmpresa = empresaService.dadosEmpresa(id);
+        return ResponseEntity.ok(dadosEmpresa);
+    }
+
 }
