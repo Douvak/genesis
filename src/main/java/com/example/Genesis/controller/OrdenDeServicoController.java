@@ -1,6 +1,6 @@
 package com.example.Genesis.controller;
 
-import com.example.Genesis.domain.dto.OrdemDeServicoDTO;
+import com.example.Genesis.domain.dto.NovaOrdemDeServicoDTO;
 import com.example.Genesis.domain.service.OrdemDeServicoService;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,15 +16,15 @@ public class OrdenDeServicoController {
 
     @Transactional
     @PostMapping
-    public ResponseEntity<OrdemDeServicoDTO> novaOrdem(@RequestBody OrdemDeServicoDTO dados){
-        OrdemDeServicoDTO ordem = service.criarOrdem(dados);
+    public ResponseEntity<NovaOrdemDeServicoDTO> novaOrdem(@RequestBody NovaOrdemDeServicoDTO dados){
+        NovaOrdemDeServicoDTO ordem = service.criarOrdem(dados);
         return ResponseEntity.ok(ordem);
     }
 
     @Transactional
     @PutMapping("editarOrdem")
-    public ResponseEntity<OrdemDeServicoDTO>editarOrdem(@RequestBody OrdemDeServicoDTO dados){
-        OrdemDeServicoDTO ordemATT = service.atualizarOrdem(dados);
+    public ResponseEntity<NovaOrdemDeServicoDTO>editarOrdem(@RequestBody NovaOrdemDeServicoDTO dados){
+        NovaOrdemDeServicoDTO ordemATT = service.atualizarOrdem(dados);
         return ResponseEntity.ok(ordemATT);
     }
 

@@ -1,6 +1,6 @@
 package com.example.Genesis.domain.service;
 
-import com.example.Genesis.domain.dto.OrdemDeServicoDTO;
+import com.example.Genesis.domain.dto.NovaOrdemDeServicoDTO;
 import com.example.Genesis.domain.entity.Empresa;
 import com.example.Genesis.domain.entity.OrdemDeServico;
 import com.example.Genesis.domain.entity.Pedido;
@@ -16,18 +16,18 @@ public class OrdemDeServicoService {
     @Autowired
     private Validacao validacao;
 
-    public OrdemDeServicoDTO criarOrdem(OrdemDeServicoDTO dados) {
+    public NovaOrdemDeServicoDTO criarOrdem(NovaOrdemDeServicoDTO dados) {
         Empresa empresa = validacao.validarEmpresa(dados.empresaID());
         Pedido pedido = validacao.validarPedido(dados.pedidoID());
 
         OrdemDeServico ordem = new OrdemDeServico(dados, pedido, empresa);
 
         repository.save(ordem);
-        return  new OrdemDeServicoDTO(ordem);
+        return  new NovaOrdemDeServicoDTO(ordem);
     }
 
 
-    public OrdemDeServicoDTO atualizarOrdem(OrdemDeServicoDTO dados){
+    public NovaOrdemDeServicoDTO atualizarOrdem(NovaOrdemDeServicoDTO dados){
         OrdemDeServico ordem = repository.getReferenceById(dados.id());
         if (dados.valor() != null){
             ordem.setValor(dados.valor());
@@ -36,7 +36,7 @@ public class OrdemDeServicoService {
             ordem.setDescricao(dados.descricao());
         }
         repository.save(ordem);
-        return new OrdemDeServicoDTO(ordem);
+        return new NovaOrdemDeServicoDTO(ordem);
     }
 
     public void deletarOrdem(Long id) {

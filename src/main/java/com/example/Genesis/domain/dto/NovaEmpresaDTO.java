@@ -1,10 +1,8 @@
 package com.example.Genesis.domain.dto;
 
 import com.example.Genesis.domain.entity.Empresa;
-import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Size;
 
-public record EmpresaDTO(
+public record NovaEmpresaDTO(
         Long id,
         String nome,
         String cnpj,
@@ -12,7 +10,7 @@ public record EmpresaDTO(
         String email,
         String endereco
 ) {
-    public EmpresaDTO( Empresa empresa){
+    public NovaEmpresaDTO(Empresa empresa){
         this(empresa.getId(), empresa.getNome(), empresa.getCnpj(), empresa.getTelefone(), empresa.getEmail(), empresa.getEndereco());
     }
 }

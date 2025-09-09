@@ -21,6 +21,7 @@ public class Pedido {
     private Float valorTotal;
     @Column(name = "previsao_entrega")
     private LocalDateTime previsaoDeEntrega;
+    private Boolean finalizado;
 
 
     @ManyToOne

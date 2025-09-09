@@ -1,6 +1,6 @@
 package com.example.Genesis.domain.entity;
 
-import com.example.Genesis.domain.dto.OrdemDeServicoDTO;
+import com.example.Genesis.domain.dto.NovaOrdemDeServicoDTO;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -36,7 +36,7 @@ public class OrdemDeServico {
     private List<Etapas> etapas;
 
 
-    public OrdemDeServico(OrdemDeServicoDTO dados, Pedido pedido, Empresa empresa) {
+    public OrdemDeServico(NovaOrdemDeServicoDTO dados, Pedido pedido, Empresa empresa) {
         this.descricao = dados.descricao();
         this.statusAtual = "Nova Ordem";
         this.valor = dados.valor();
