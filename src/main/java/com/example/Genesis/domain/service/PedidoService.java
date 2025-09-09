@@ -31,6 +31,14 @@ public class PedidoService {
             Cliente cliente = clienteRepoistory.getReferenceById(dados.clienteID());
             novoPedido.setCliente(cliente);
         }
+        else {
+            Cliente novoCliente = new Cliente();
+            novoCliente.setNome(dados.nome());
+            novoCliente.setContato(dados.contato());
+            novoCliente.setEmpresa(empresa);
+            clienteRepoistory.save(novoCliente);
+            novoPedido.setCliente(novoCliente);
+        }
         repository.save(novoPedido);
         return new PedidoDTO(novoPedido);
     }

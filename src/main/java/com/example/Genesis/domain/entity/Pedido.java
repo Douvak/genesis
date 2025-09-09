@@ -44,5 +44,6 @@ public class Pedido {
     public Pedido(Empresa empresa) {
         this.empresa = empresa;
         this.previsaoDeEntrega = LocalDateTime.now().plusDays(15);
+        this.ordemDeServicos = new ArrayList<>();
     }
 }
