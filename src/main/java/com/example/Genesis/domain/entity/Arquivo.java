@@ -4,7 +4,7 @@ import jakarta.persistence.*;
 import lombok.*;
 
 @Entity(name = "Arquivo")
-@Table(name = "arquivos")
+@Table(name = "arquivos_ordem")
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
@@ -14,7 +14,7 @@ public class Arquivo {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String arquivoLink;
+    private String rota;
 
     @ManyToOne
     @JoinColumn(name = "ordem_servico_id", referencedColumnName = "id", nullable = false)
