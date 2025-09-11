@@ -11,12 +11,12 @@ public record NovaOrdemDeServicoDTO(
         Float valor,
         Long pedidoID,
         Long empresaID,
-        List<Arquivo> arquivos
+        List<ArquivoDTO> arquivos
 
 ) {
 
     public NovaOrdemDeServicoDTO(OrdemDeServico ordem){
-        this(ordem.getId(), ordem.getDescricao(), ordem.getValor(),ordem.getPedido().getId(),ordem.getEmpresa().getId(), ordem.getArquivos());
+        this(ordem.getId(), ordem.getDescricao(), ordem.getValor(),ordem.getPedido().getId(),ordem.getEmpresa().getId(), ordem.getArquivos().stream().map(ArquivoDTO::new).toList());
     }
 
 }

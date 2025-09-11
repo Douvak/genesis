@@ -17,6 +17,12 @@ public class Arquivo {
     private String rota;
 
     @ManyToOne
-    @JoinColumn(name = "ordem_servico_id", referencedColumnName = "id", nullable = false)
+    @JoinColumn(name = "ordem_pedido_id", referencedColumnName = "id", nullable = false)
     private OrdemDeServico ordemDeServico;
+
+    public Arquivo(String caminho, OrdemDeServico ordem) {
+
+        this.ordemDeServico = ordem;
+        this.rota = caminho;
+    }
 }
