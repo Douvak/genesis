@@ -3,6 +3,7 @@ package com.example.Genesis.controller;
 import com.example.Genesis.domain.dto.EmpresaDadosDTO;
 import com.example.Genesis.domain.dto.NovaEmpresaDTO;
 import com.example.Genesis.domain.dto.CriarEmpresaDTO;
+import com.example.Genesis.domain.dto.NovaSenhaDTO;
 import com.example.Genesis.domain.service.EmpresaService;
 import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
@@ -43,6 +44,12 @@ public class EmpresaController {
     public ResponseEntity<EmpresaDadosDTO>dadosEmpresa(@PathVariable Long id){
         var dadosEmpresa = empresaService.dadosEmpresa(id);
         return ResponseEntity.ok(dadosEmpresa);
+    }
+    @PostMapping("alterarSenha")
+    @Transactional
+    public ResponseEntity<Boolean>alterarSenhaEmpresa( @RequestBody NovaSenhaDTO dados){
+        var senhaAlterada = empresaService.alterarSenhaEmpresa(dados);
+        return ResponseEntity.ok(senhaAlterada);
     }
 
 }

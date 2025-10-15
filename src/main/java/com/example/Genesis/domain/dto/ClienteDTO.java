@@ -12,6 +12,6 @@ public record ClienteDTO(
     public ClienteDTO(Cliente cliente){
         this(   cliente.getId(),
                 cliente.getNome(),
-                cliente.getNome());
+                cliente.getContato());
     }
 }

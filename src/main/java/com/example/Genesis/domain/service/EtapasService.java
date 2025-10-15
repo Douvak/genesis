@@ -2,6 +2,8 @@ package com.example.Genesis.domain.service;
 
 import com.example.Genesis.domain.dto.EtapasDTO;
 import com.example.Genesis.domain.dto.NovaEtapaDTO;
+import com.example.Genesis.domain.dto.NovaOrdemDeServicoDTO;
+import com.example.Genesis.domain.dto.OrdemDeServicoDTO;
 import com.example.Genesis.domain.entity.Empresa;
 import com.example.Genesis.domain.entity.Etapas;
 import com.example.Genesis.domain.entity.Funcionario;
@@ -14,6 +16,7 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Objects;
 
 @Service
 public class EtapasService {
@@ -26,18 +29,26 @@ public class EtapasService {
 
 
     public EtapasDTO iniciarEtapa(NovaEtapaDTO dados){
-        Empresa empresa = validacao.validarEmpresa(dados.empresa());
-        Funcionario funcionario= validacao.validarFuncionario(dados.funcionario());
-        Etapas novaEtapa = new Etapas(empresa, funcionario, dados);
+        OrdemDeServico ordem = ordenDeServicoRepository.getReferenceById(dados.ordem());
+        Etapas novaEtapa = new Etapas(ordem, dados);
+        if (dados.funcionario() != null){
+            Funcionario funcionario= validacao.validarFuncionario(dados.funcionario());
+            novaEtapa.setFuncionario(funcionario);
+
+        }
+        if (Objects.equals(dados.etapa(), "PAUSADO"))
+            novaEtapa.setPedidoID(ordem.getPedido().getId());
         repository.save(novaEtapa);
 
         return new EtapasDTO(novaEtapa);
 
     }
-    public void finalizarEtapa(Long id){
+    public NovaOrdemDeServicoDTO finalizarEtapa(Long id){
         Etapas etapa = repository.getReferenceById(id);
         etapa.setFinalizado(LocalDateTime.now());
         repository.save(etapa);
+        OrdemDeServico ordem = ordenDeServicoRepository.getReferenceById(etapa.getOrdemDeServico().getId());
+        return new NovaOrdemDeServicoDTO(ordem);
     }
 
     public List<EtapasDTO> listaEtapas(Long ordemID){

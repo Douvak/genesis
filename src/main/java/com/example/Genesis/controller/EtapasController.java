@@ -2,6 +2,8 @@ package com.example.Genesis.controller;
 
 import com.example.Genesis.domain.dto.EtapasDTO;
 import com.example.Genesis.domain.dto.NovaEtapaDTO;
+import com.example.Genesis.domain.dto.NovaOrdemDeServicoDTO;
+import com.example.Genesis.domain.dto.OrdemDeServicoDTO;
 import com.example.Genesis.domain.service.EtapasService;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,10 +27,10 @@ public class EtapasController {
 
     }
     @PostMapping("finalizar/{id}")
-    public ResponseEntity<String> finalizarEtapa(@PathVariable Long id) {
+    public ResponseEntity<NovaOrdemDeServicoDTO> finalizarEtapa(@PathVariable Long id) {
 
-        service.finalizarEtapa(id);
-        return ResponseEntity.ok("finalizado");
+        var etapaAtualizada = service.finalizarEtapa(id);
+        return ResponseEntity.ok(etapaAtualizada);
     }
 
     @GetMapping("{id}")

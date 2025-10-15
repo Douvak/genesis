@@ -49,6 +49,12 @@ public class PedidoController {
         service.deletarPedido(id);
         return ResponseEntity.ok("Pedido deletado com Sucesso!");
     }
+    @Transactional
+    @PostMapping("colocarEmProducao/{id}")
+    public ResponseEntity colcarEmPRoducao(@PathVariable Long id){
+          service.colocarEmPRoducao(id);
+        return ResponseEntity.status(200).build();
+    }
 
 
 }

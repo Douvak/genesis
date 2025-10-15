@@ -22,6 +22,7 @@ public class Pedido {
     @Column(name = "previsao_entrega")
     private LocalDateTime previsaoDeEntrega;
     private Boolean finalizado;
+    private String status;
 
 
     @ManyToOne
@@ -46,5 +47,9 @@ public class Pedido {
         this.empresa = empresa;
         this.previsaoDeEntrega = LocalDateTime.now().plusDays(15);
         this.ordemDeServicos = new ArrayList<>();
+        this.valorTotal = (float) 0;
+        this.status = "ORÇAMENTO";
     }
+
+
 }

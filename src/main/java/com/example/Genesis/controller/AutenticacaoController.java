@@ -2,6 +2,7 @@ package com.example.Genesis.controller;
 
 
 import com.example.Genesis.domain.dto.LoginDTO;
+import com.example.Genesis.domain.dto.TokenDTO;
 import com.example.Genesis.domain.entity.Usuario;
 import com.example.Genesis.domain.service.TokenService;
 import jakarta.transaction.Transactional;
@@ -26,10 +27,10 @@ public class AutenticacaoController {
 
     @PostMapping("login")
     @Transactional
-    public ResponseEntity login(@RequestBody @Valid LoginDTO dados){
+    public ResponseEntity<TokenDTO> login(@RequestBody @Valid LoginDTO dados){
         var token = new UsernamePasswordAuthenticationToken(dados.login(), dados.senha());
         var authentication = authenticationManager.authenticate(token);
         String tokengerado = tokenService.gerarToken((Usuario) authentication.getPrincipal());
-        return ResponseEntity.ok(tokengerado);
+        return ResponseEntity.ok(new TokenDTO(tokengerado));
     }
 }

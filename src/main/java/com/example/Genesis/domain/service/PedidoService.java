@@ -58,4 +58,12 @@ public class PedidoService {
         Pedido pedido = repository.getReferenceById(id);
         return new PedidoDTO(pedido);
     }
+
+    public void colocarEmPRoducao(Long id) {
+        Pedido pedido = repository.getReferenceById(id);
+        pedido.setStatus("EM PRODUÇÃO");
+        repository.save(pedido);
+
+
+    }
 }

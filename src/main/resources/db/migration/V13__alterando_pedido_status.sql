@@ -1,0 +1,3 @@
+ALTER TABLE pedidos
+
+ADD COLUMN status  VARCHAR(55);

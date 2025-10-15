@@ -4,6 +4,7 @@ import com.example.Genesis.domain.dto.NovaOrdemDeServicoDTO;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity(name = "OrdemDeServico")
@@ -21,6 +22,8 @@ public class OrdemDeServico {
     @Column(name = "status")
     private String statusAtual;
     private Float valor;
+    private String observacoes;
+    private String material;
 
 
     @ManyToOne
@@ -32,7 +35,7 @@ public class OrdemDeServico {
 
     @OneToMany(mappedBy = "ordemDeServico")
     private List<Arquivo> arquivos;
-    @OneToMany(mappedBy = "ordemDeServico")
+    @OneToMany(mappedBy = "ordemDeServico", cascade = CascadeType.REMOVE)
     private List<Etapas> etapas;
 
 
@@ -42,5 +45,8 @@ public class OrdemDeServico {
         this.valor = dados.valor();
         this.empresa = empresa;
         this.pedido = pedido;
+        this.arquivos = new ArrayList<>();
+        this.observacoes = dados.observacoes();
+        this.material = dados.material();
     }
 }

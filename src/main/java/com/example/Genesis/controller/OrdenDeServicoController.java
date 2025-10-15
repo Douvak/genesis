@@ -29,9 +29,11 @@ public class OrdenDeServicoController {
     }
 
     @Transactional
-    @DeleteMapping("id")
+    @DeleteMapping("{id}")
    public ResponseEntity<String>deletarORdem(@PathVariable Long id) {
         service.deletarOrdem(id);
         return ResponseEntity.ok("Ordem deletada");
     }
+
+
 }

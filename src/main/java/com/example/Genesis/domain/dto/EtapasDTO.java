@@ -6,8 +6,9 @@ import java.time.LocalDateTime;
 
 public record EtapasDTO(
         Long id,
+        String ordem,
         String etapa,
-
+        String motivo,
         String funcionario,
         LocalDateTime inicio,
         LocalDateTime finalizado
@@ -15,6 +16,6 @@ public record EtapasDTO(
 ) {
 
     public EtapasDTO(Etapas etapas){
-        this(etapas.getId(), etapas.getTipoEtapa().toString(), etapas.getFuncionario().getNome(),etapas.getInicio(),etapas.getFinalizado());
+        this(etapas.getId(),etapas.getOrdemDeServico().getDescricao(), etapas.getTipoEtapa().toString(),etapas.getMotivo(),etapas.getFuncionario() != null ? etapas.getFuncionario().getNome() : null,etapas.getInicio(),etapas.getFinalizado());
     }
 }
